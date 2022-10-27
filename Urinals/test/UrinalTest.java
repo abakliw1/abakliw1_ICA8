@@ -3,8 +3,9 @@ import static  org.junit.Assert.*;
 
 public class UrinalTest {
     @Test
-    public void testcheckUrinal(){
+    public void testoptStr(){
         Urinals tester=new Urinals();
-        assertEquals("===Akshat Bakliwal===10001 must be 1", 1,tester.checkUrinal("10001"));
+        assertEquals("===Akshat Bakliwal=== File must be chosen", "File",tester.optStr("File"));
+
     }
 }
