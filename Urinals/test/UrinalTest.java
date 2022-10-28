@@ -22,6 +22,7 @@ public class UrinalTest {
         assertEquals("===Akshat Bakliwal===should return 0 Test Case 6",0,tester.numuri("1001"));
         assertEquals("===Akshat Bakliwal===should return 3 Test Case 7",3,tester.numuri("00000"));
         assertEquals("===Akshat Bakliwal===should return 2 Test Case 8",2,tester.numuri("0000"));
+        assertEquals("===Akshat Bakliwal===should return 1 Test Case 7",1,tester.numuri("01000"));
     }
 
 }
