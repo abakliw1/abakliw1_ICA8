@@ -1,20 +1,74 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Urinals {
-//    public String optFile() {
-//
-////        System.out.println("File Chosen");;
-//        return "File";
-//
-//    }
-//    public String optIn(){
+    public String optFile() {
+
+//        System.out.println("File Chosen");;
+        return "File";
+
+    }
+    public int numuri(String str){
+        int count=0;
+        char ch,next, prev;
+        for(int i=0;i<str.length();i++){
+            if(i==0){
+                next=str.charAt(i+1);
+                ch=str.charAt(i);
+                if(ch=='0' && next=='0'){
+                    str=ch+str.substring(i+1);
+                    count++;
+                }
+                continue;
+            }
+            else if(i==str.length()-1){
+                prev=str.charAt(i-1);
+                ch=str.charAt(i);
+                if(ch=='0' && prev=='0'){
+                    str=str.substring(0,i)+ch;
+                    count++;
+
+                }
+                break;
+            }
+            prev=str.charAt(i-1);
+            next=str.charAt(i+1);
+            ch=str.charAt(i);
+            if(ch=='0' && next=='0' && prev=='0'){
+                str=str.substring(0,i)+ch+str.substring(i+1);
+                count++;
+            }
+        }
+        return count;
+    }
+    public int goodString(String st){
+//        ArrayList<String> ur=new ArrayList<>();
+        char ch,nextchar;
+        if(st.length()>=20)
+            return -1;
+        else{
+            for(int i=0;i<st.length()-1;i++){
+                ch=st.charAt(i);
+                nextchar=st.charAt(i+1);
+                if(ch=='1' && nextchar=='1')
+                    return -1;
+            }
+        }
+        return 0;
+    }
+    public String optIn(){
 ////        System.out.println("Input chosen");
-//        return "Input";
-//    }
+//        Scanner sc=new Scanner(System.in);
+//        String st=sc.next();
+        int n= goodString("11000");
+        return "Input";
+    }
     public String optStr(String s){
         if(s.equals("Input")){
-            return "Input";
+            return optIn();
         }
         else if(s.equals("File")){
-            return "File";
+            return optFile();
         }
         return "Wrong Option Chosen";
     }
