@@ -1,10 +1,22 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.io.*;
 public class Urinals {
-    public String optFile() {
+    public String optFile() throws IOException {
 
 //        System.out.println("File Chosen");;
+        File f=new File("urinal.dat");
+        BufferedReader br= new BufferedReader(new FileReader(f));
+        String st;
+        ArrayList<Integer> count=new ArrayList<Integer>();
+        while((st=br.readLine())!=null){
+            count.add(numuri(st));
+        }
+        File f2=new File("rule.txt");
+        BufferedWriter bw=new BufferedWriter(new FileWriter(f2));
+        for(int i=0;i<count.size();i++){
+            bw.write(count.get(i));
+        }
         return "File";
 
     }
@@ -16,6 +28,7 @@ public class Urinals {
                 next=str.charAt(i+1);
                 ch=str.charAt(i);
                 if(ch=='0' && next=='0'){
+                    ch='1';
                     str=ch+str.substring(i+1);
                     count++;
                 }
@@ -25,6 +38,7 @@ public class Urinals {
                 prev=str.charAt(i-1);
                 ch=str.charAt(i);
                 if(ch=='0' && prev=='0'){
+                    ch='1';
                     str=str.substring(0,i)+ch;
                     count++;
 
@@ -35,6 +49,7 @@ public class Urinals {
             next=str.charAt(i+1);
             ch=str.charAt(i);
             if(ch=='0' && next=='0' && prev=='0'){
+                ch='1';
                 str=str.substring(0,i)+ch+str.substring(i+1);
                 count++;
             }
@@ -63,7 +78,7 @@ public class Urinals {
         int n= goodString("11000");
         return "Input";
     }
-    public String optStr(String s){
+    public String optStr(String s) throws IOException {
         if(s.equals("Input")){
             return optIn();
         }
