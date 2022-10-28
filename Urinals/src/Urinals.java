@@ -5,19 +5,36 @@ public class Urinals {
     public String optFile() throws IOException {
 
 //        System.out.println("File Chosen");;
-        File f=new File("urinal.dat");
+        File f=new File("src/urinal.dat");
         BufferedReader br= new BufferedReader(new FileReader(f));
         String st;
         ArrayList<Integer> count=new ArrayList<Integer>();
         while((st=br.readLine())!=null){
             count.add(numuri(st));
         }
-        File f2=new File("rule.txt");
-        BufferedWriter bw=new BufferedWriter(new FileWriter(f2));
-        for(int i=0;i<count.size();i++){
-            bw.write(count.get(i));
+        for(int i=0;i< count.size();i++){
+            System.out.println(count.get(i));
         }
-        return "File";
+        String s = "";
+        for(int i=0;i<count.size();i++){
+            s+=" "+count.get(i);
+        }
+        br.close();
+        File f2=new File("src/rule.txt");
+        int counter=1;
+        while(f2.exists()){
+            f2=new File("src/rule"+counter+".txt");
+            counter++;
+        }
+//        f2=File.createNewFile("rule"+counter+".txt");
+//        System.out.println(f2.getName());
+        FileWriter fw=new FileWriter(f2);
+        for(int i=0;i<count.size();i++){
+            fw.write(count.get(i)+"\n");
+        }
+        fw.close();
+        return s;
+//        return "File";
 
     }
     public int numuri(String str){
@@ -89,7 +106,6 @@ public class Urinals {
     }
 
     public static void main(String[] args) {
-
         System.out.println("Hello world!");
     }
 }
