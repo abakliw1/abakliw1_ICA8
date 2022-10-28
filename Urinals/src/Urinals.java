@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
 public class Urinals {
-    public String optFile() throws IOException {
+    public static String optFile() throws IOException {
 
 //        System.out.println("File Chosen");;
         File f=new File("src/urinal.dat");
@@ -37,7 +37,7 @@ public class Urinals {
 //        return "File";
 
     }
-    public int numuri(String str){
+    public static int numuri(String str){
         int count=0;
         char ch,next, prev;
         for(int i=0;i<str.length();i++){
@@ -73,7 +73,7 @@ public class Urinals {
         }
         return count;
     }
-    public int goodString(String st){
+    public static int goodString(String st){
 //        ArrayList<String> ur=new ArrayList<>();
         char ch,nextchar;
         if(st.length()>=20)
@@ -88,14 +88,18 @@ public class Urinals {
         }
         return 0;
     }
-    public String optIn(){
-////        System.out.println("Input chosen");
-//        Scanner sc=new Scanner(System.in);
-//        String st=sc.next();
-        int n= goodString("11000");
-        return "Input";
+    public static String optIn(){
+//        System.out.println("Input chosen");
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the Urinal Pattern: ");
+        String st=sc.next();
+        int n= goodString(st);
+        if(n>-1)
+            n=numuri(st);
+        String s= String.valueOf(n);
+        return s;
     }
-    public String optStr(String s) throws IOException {
+    public static String optStr(String s) throws IOException {
         if(s.equals("Input")){
             return optIn();
         }
@@ -105,7 +109,12 @@ public class Urinals {
         return "Wrong Option Chosen";
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        System.out.println("Enter the input method(Input for keyboard and File for File input): ");
+        Scanner sc=new Scanner(System.in);
+        String s=sc.next();
+        String str= optStr(s);
+        System.out.println(str);
         System.out.println("Hello world!");
     }
 }
